@@ -9,22 +9,22 @@ import { products } from "./data/productDetails";
 const App = () => {
   const [product, setProduct] = useState(products);
   const [cartCount, setCartCount] = useState([]);
-
   const cartChanged = (newProduct, index) => {
     setProduct((prevProduct) =>
       prevProduct.map((product, i) => {
         if (index === i) product.inCart = newProduct;
-        else product.inCart = false;
+
         return product;
       })
     );
   };
+
   useEffect(() => {
     setCartCount((prevCart) => {
       let cur = product.filter((prod) => {
         return prod.inCart === true;
       });
-      return [...prevCart, cur];
+      return cur;
     });
   }, [product]);
 
